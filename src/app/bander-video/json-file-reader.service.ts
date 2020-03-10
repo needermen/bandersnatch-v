@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+// @ts-ignore
 import scenarios from '../../data.json';
 import {Node} from './node';
 import {Scenario} from './scenario';

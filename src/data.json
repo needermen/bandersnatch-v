@@ -5,7 +5,8 @@
     "img": "https://content.jwplatform.com/thumbs/qNLhqk3W-480.jpg",
     "data": [
       {
-        "id": "qWD0hCm8",
+        "id": "chemical-start",
+        "hls": "https://cdn.jwplayer.com/manifests/qWD0hCm8.m3u8",
         "question": "აბა რა გინდა შემდეგი!",
         "answers": [
           {

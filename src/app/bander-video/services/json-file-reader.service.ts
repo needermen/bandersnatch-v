@@ -12,7 +12,6 @@ export class JsonFileReaderService {
 
   constructor() {
     this.scenarios = scenarios as Scenario[];
-    console.log(this.scenarios);
   }
 
   getFirst(scenarioId: string): Node {

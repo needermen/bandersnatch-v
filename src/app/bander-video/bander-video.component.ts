@@ -21,55 +21,28 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   faPause = faPauseCircle;
   faBack = faChevronCircleLeft;
 
-  countDown: number;
-  anwerId: number;
-  paused: boolean;
-  fullScreened: boolean;
-  showPlayerControls: boolean;
-
   node: Node;
   nextNode: Node;
-
-  showQuestion: boolean;
 
   currentVideo: any;
   newVideo: any;
 
   @Input() scenarioId: string;
-
   @Output() backIt = new EventEmitter();
-
   @ViewChild('wrapper', {static: false}) wrapper: ElementRef;
 
-  userActivity;
-  userInactive: Subject<any> = new Subject();
-
   constructor(private renderer2: Renderer2, private jsonFileReader: JsonFileReaderService) {
-    this.setTimeout();
-    this.userInactive.subscribe(() => this.showPlayerControls = false);
-  }
-
-  setTimeout() {
-    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 1200);
-  }
-
-  onmouseMove() {
-    this.showPlayerControls = true;
-    clearTimeout(this.userActivity);
-    this.setTimeout();
   }
 
   ngOnInit(): void {
     this.node = this.jsonFileReader.getFirst(this.scenarioId);
+    this.initMovementHandling();
   }
 
   ngAfterViewInit(): void {
     this.currentVideo = this.wrapper.nativeElement.querySelector('#vi');
+    this.loadVideo(this.node, this.currentVideo, true);
     this.currentVideo.addEventListener('timeupdate', this.triggerCheck);
-    this.currentVideo.addEventListener('loadedmetadata', () => {
-      this.currentVideo.play();
-      this.currentVideo.muted = '';
-    });
   }
 
   triggerCheck = () => {
@@ -84,42 +57,64 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     }
     if ((this.currentVideo.duration - this.currentVideo.currentTime) * 1000 < 13000) {
       if (!this.showQuestion) {
-        this.showQuestion = true;
-        this.countDown = 10;
-        timer(1000, 1000).pipe(take(10)).subscribe(() => {
-          this.countDown = this.countDown - 1;
-        });
+        if (this.node && this.node.answers && this.node.answers.length > 0) {
+          this.showQuestion = true;
+          this.countDown = 10;
+          timer(1000, 1000).pipe(take(10)).subscribe(() => {
+            this.countDown = this.countDown - 1;
+          });
+        } else {
+          this.backIt.emit();
+        }
       }
     }
-  };
-
-  processQuestion() {
-    this.anwerId = 0;
-    this.showQuestion = false;
-    if (!this.nextNode && !this.processDefault()) {
-      // ended
-      return;
-    }
-
-    this.createNewVideo();
-    this.currentVideo.addEventListener('ended', this.startNewVideo);
   }
 
   createNewVideo() {
     // create new Video
     this.newVideo = this.renderer2.createElement('video');
     this.renderer2.setAttribute(this.newVideo, 'id', this.nextNode.id);
-    // this.newVideo.muted = 'muted';
     this.renderer2.setStyle(this.newVideo, 'display', 'none');
     this.renderer2.setAttribute(this.newVideo, 'crossorigin', 'crossorigin');
     this.renderer2.insertBefore(this.wrapper.nativeElement, this.newVideo, this.wrapper.nativeElement.firstChild);
-    this.processVideoWithHls();
+    this.loadVideo(this.nextNode, this.newVideo);
+  }
+
+  loadVideo(node, video, start = false) {
+    if (node.hls) {
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(node.hls);
+        hls.attachMedia(video);
+        if (start) {
+          if (start) {
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              video.play();
+            });
+          }
+        }
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        this.renderer2.setAttribute(video, 'src', node.hls);
+        if (start) {
+          video.addEventListener('loadedmetadata', () => {
+            video.play();
+          });
+        }
+      }
+    } else {
+      this.renderer2.setAttribute(video, 'src', this.jwPlayerSource(node));
+      if (start) {
+        video.addEventListener('loadedmetadata', () => {
+            video.play();
+          }
+        );
+      }
+    }
   }
 
   startNewVideo = () => {
     // show new video
     this.newVideo.muted = '';
-    // this.newVideo.currentTime = 0;
     this.newVideo.play();
     this.renderer2.setStyle(this.newVideo, 'display', 'block');
 
@@ -135,28 +130,33 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     this.currentVideo.addEventListener('timeupdate', this.triggerCheck);
   };
 
-  processVideoWithHls() {
-    if (this.nextNode.hls) {
-      if (Hls.isSupported()) {
-        var hls = new Hls();
-        hls.loadSource(this.nextNode.hls);
-        hls.attachMedia(this.newVideo);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          // this.newVideo.play();
-        });
-      } else if (this.newVideo.canPlayType('application/vnd.apple.mpegurl')) {
-        this.renderer2.setAttribute(this.newVideo, 'src', this.nextNode.hls);
-        this.newVideo.addEventListener('loadedmetadata', () => {
-          // this.newVideo.play();
-        });
-      }
-    } else {
-      this.newVideo.addEventListener('loadedmetadata', () => {
-        // this.newVideo.play();
-        this.renderer2.setAttribute(this.newVideo, 'src', this.nextSrc);
-      });
-    }
+  jwPlayerSource(node: Node) {
+    return node.url ? node.url : `https://content.jwplatform.com/videos/${node.id}.mp4`;
   }
+
+  /* Movement Handling */
+  userActivity;
+  userInactive: Subject<any> = new Subject();
+
+  initMovementHandling() {
+    this.setTimeout();
+    this.userInactive.subscribe(() => this.showPlayerControls = false);
+  }
+
+  setTimeout() {
+    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 1200);
+  }
+
+  onmouseMove() {
+    this.showPlayerControls = true;
+    clearTimeout(this.userActivity);
+    this.setTimeout();
+  }
+
+  /* player */
+  paused: boolean;
+  fullScreened: boolean;
+  showPlayerControls: boolean;
 
   pause() {
     this.currentVideo.pause();
@@ -180,7 +180,9 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
 
   RunPrefixMethod(obj, method) {
     let pfx = ['webkit', 'moz', 'ms', 'o', ''];
-    var p = 0, m, t;
+    let p = 0;
+    let m;
+    let t;
     while (p < pfx.length && !obj[m]) {
       m = method;
       if (pfx[p] == '') {
@@ -197,9 +199,26 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
 
   }
 
+  /* Process Question, Answer */
+  showQuestion: boolean;
+  countDown: number;
+  answerId: number;
+
+  processQuestion() {
+    this.answerId = 0;
+    this.showQuestion = false;
+    if (!this.nextNode && !this.processDefault()) {
+      // ended
+      return;
+    }
+
+    this.createNewVideo();
+    this.currentVideo.addEventListener('ended', this.startNewVideo);
+  }
+
   processAnswer(id: number) {
-    this.anwerId = id;
-    const result = this.node.answers.filter(a => a.id == id)[0];
+    this.answerId = id;
+    const result = this.node.answers.filter(a => a.id === id)[0];
     this.selectNextNode(result.goTo);
   }
 
@@ -219,18 +238,6 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     } else {
       this.nextNode = <Node> {id: nodeId};
     }
-  }
-
-  get src() {
-    return this.source(this.node);
-  }
-
-  get nextSrc() {
-    return this.source(this.nextNode);
-  }
-
-  source(node: Node) {
-    return node.url ? node.url : `https://content.jwplatform.com/videos/${node.id}.mp4`;
   }
 
 }

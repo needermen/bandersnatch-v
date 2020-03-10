@@ -2,7 +2,7 @@
   <video id="vi" crossorigin="crossorigin">
     Your browser does not support the video tag.
   </video>
-  <ng-container *ngIf="!showQuestion && showPlayerControls">
+  <ng-container *ngIf="!questionMode && showPlayerControls">
     <span [@fade]>
       <fa-icon class="back" (click)="backIt.emit()" [icon]="faBack">
       </fa-icon>
@@ -16,16 +16,14 @@
       </fa-icon>
     </span>
   </ng-container>
-  <div class="question-answer" *ngIf="showQuestion">
-    <div class="question">
+  <div class="question-answer" *ngIf="questionMode">
+    <div class="question" *ngIf="node?.question">
       <!--      <h1>{{node?.question}}</h1>-->
     </div>
-    <div class="answers">
-      <ng-container *ngIf="node?.answers">
-        <ng-container *ngFor="let answer of node?.answers">
-          <button type="button" (click)="processAnswer(answer.id)"
-                  [ngClass]="{'selected': answer.id == answerId}">{{answer.text}}</button>
-        </ng-container>
+    <div class="answers" *ngIf="node?.answers">
+      <ng-container *ngFor="let answer of node?.answers">
+        <button type="button" (click)="processAnswer(answer.id)"
+                [ngClass]="{'selected': answer.id == answerId}">{{answer.text}}</button>
       </ng-container>
       <span class="timer">{{countDown}}</span>
     </div>

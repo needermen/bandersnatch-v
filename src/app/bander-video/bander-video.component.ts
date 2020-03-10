@@ -50,15 +50,15 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
       return;
     }
     if ((this.currentVideo.duration - this.currentVideo.currentTime) * 1000 < 3000) {
-      if (this.showQuestion) {
+      if (this.questionMode) {
         this.processQuestion();
       }
       return;
     }
     if ((this.currentVideo.duration - this.currentVideo.currentTime) * 1000 < 13000) {
-      if (!this.showQuestion) {
+      if (!this.questionMode) {
+        this.questionMode = true;
         if (this.node && this.node.answers && this.node.answers.length > 0) {
-          this.showQuestion = true;
           this.countDown = 10;
           timer(1000, 1000).pipe(take(10)).subscribe(() => {
             this.countDown = this.countDown - 1;
@@ -198,13 +198,13 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   }
 
   /* Process Question, Answer */
-  showQuestion: boolean;
+  questionMode: boolean;
   countDown: number;
   answerId: number;
 
   processQuestion() {
     this.answerId = 0;
-    this.showQuestion = false;
+    this.questionMode = false;
     if (!this.nextNode && !this.processDefault()) {
       this.currentVideo.addEventListener('ended', () => this.backIt.emit());
     } else {

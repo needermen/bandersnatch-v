@@ -63,8 +63,6 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
           timer(1000, 1000).pipe(take(10)).subscribe(() => {
             this.countDown = this.countDown - 1;
           });
-        } else {
-          this.backIt.emit();
         }
       }
     }
@@ -208,12 +206,11 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     this.answerId = 0;
     this.showQuestion = false;
     if (!this.nextNode && !this.processDefault()) {
-      // ended
-      return;
+      this.currentVideo.addEventListener('ended', () => this.backIt.emit());
+    } else {
+      this.createNewVideo();
+      this.currentVideo.addEventListener('ended', this.startNewVideo);
     }
-
-    this.createNewVideo();
-    this.currentVideo.addEventListener('ended', this.startNewVideo);
   }
 
   processAnswer(id: number) {

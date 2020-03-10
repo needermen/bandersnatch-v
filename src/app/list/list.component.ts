@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {JsonFileReaderService} from '../bander-video/json-file-reader.service';
-import {Scenario} from '../bander-video/scenario';
+import {JsonFileReaderService} from '../bander-video/services/json-file-reader.service';
+import {Scenario} from '../bander-video/models/scenario';
 
 @Component({
   selector: 'app-list',

@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {JsonFileReaderService} from './json-file-reader.service';
-import {Node} from './node';
+import {JsonFileReaderService} from './services/json-file-reader.service';
+import {Node} from './models/node';
 import {Subject, timer} from 'rxjs';
 import {take} from 'rxjs/operators';
-import {fade} from './fade.animation';
+import {fade} from './animations/fade.animation';
 import {faChevronCircleLeft, faCompress, faExpand, faPauseCircle, faPlayCircle} from '@fortawesome/free-solid-svg-icons';
 
 declare var Hls;
@@ -159,7 +159,6 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   }
 
   pause() {
-    console.log('pause');
     this.currentVideo.pause();
     this.paused = true;
   }
@@ -200,7 +199,6 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
 
   processAnswer(id: number) {
     this.anwerId = id;
-    console.log('process answer');
     const result = this.node.answers.filter(a => a.id == id)[0];
     this.selectNextNode(result.goTo);
   }
@@ -221,7 +219,6 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     } else {
       this.nextNode = <Node> {id: nodeId};
     }
-    console.log('next node = ' + JSON.stringify(this.nextNode));
   }
 
   get src() {

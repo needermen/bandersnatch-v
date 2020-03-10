@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 // @ts-ignore
-import scenarios from '../../data.json';
-import {Node} from './node';
-import {Scenario} from './scenario';
+import scenarios from '../../../data.json';
+import {Node} from '../models/node';
+import {Scenario} from '../models/scenario';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,12 @@
-<app-bander-video *ngIf="selectedId" [scenarioId]="selectedId" (backIt)="selectedId=null"></app-bander-video>
+<ng-container *ngIf="selectedId">
+  <ng-container *ngIf="isDesktop; else onlyDesktop">
+    <app-bander-video [scenarioId]="selectedId" (backIt)="selectedId=null"></app-bander-video>
+  </ng-container>
+
+  <ng-template #onlyDesktop>
+    <app-mobile-is-not-supported></app-mobile-is-not-supported>
+  </ng-template>
+</ng-container>
 
 <ng-container *ngIf="!selectedId">
   <div class="wrapper">

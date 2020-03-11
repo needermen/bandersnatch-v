@@ -1,12 +1,14 @@
 .wrapper {
-  margin-top: 100px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
+  width: 100%;
 
   > div {
-    width: 30%;
-    max-width: 480px;
+    margin: 2% 0 0 1%;
+    width: 32%;
+    min-width: 420px;
 
     img {
       width: 100%;
@@ -14,6 +16,7 @@
 
     div.title {
       margin-top: 10px;
+
       span {
         font-size: 25px;
       }

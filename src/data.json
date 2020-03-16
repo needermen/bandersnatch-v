@@ -87,5 +87,16 @@
         "hls": "https://cdn.jwplayer.com/manifests/DHohuzMS.m3u8"
       }
     ]
+  },
+  {
+    "id": "scen4",
+    "title": "Iceland",
+    "img": "https://content.jwplatform.com/thumbs/77bikmdy-480.jpg",
+    "data": [
+      {
+        "id": "iceland",
+        "hls": "https://cdn.jwplayer.com/manifests/77bikmdy.m3u8"
+      }
+    ]
   }
 ]

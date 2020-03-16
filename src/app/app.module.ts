@@ -8,7 +8,8 @@ import {JsonFileReaderService} from './bander-video/services/json-file-reader.se
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {DeviceDetectorModule} from 'ngx-device-detector';
-import { MobileIsNotSupportedComponent } from './mobile-is-not-supported/mobile-is-not-supported.component';
+import {MobileIsNotSupportedComponent} from './mobile-is-not-supported/mobile-is-not-supported.component';
+import {ConfigModule} from './config/config.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MobileIsNotSupportedComponent } from './mobile-is-not-supported/mobile-
     BrowserModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    ConfigModule,
     DeviceDetectorModule.forRoot()
   ],
   providers: [
@@ -28,4 +30,5 @@ import { MobileIsNotSupportedComponent } from './mobile-is-not-supported/mobile-
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {JsonFileReaderService} from './services/json-file-reader.service';
-import {Node} from './models/node';
+import {Video} from './models/video';
 import {Subject, timer} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {fade} from './animations/fade.animation';
@@ -21,8 +21,8 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   faPause = faPauseCircle;
   faBack = faChevronCircleLeft;
 
-  node: Node;
-  nextNode: Node;
+  node: Video;
+  nextNode: Video;
 
   currentVideo: any;
   newVideo: any;
@@ -66,7 +66,7 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
         }
       }
     }
-  }
+  };
 
   createNewVideo() {
     // create new Video
@@ -128,7 +128,7 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     this.currentVideo.addEventListener('timeupdate', this.triggerCheck);
   };
 
-  jwPlayerSource(node: Node) {
+  jwPlayerSource(node: Video) {
     return node.url ? node.url : `https://content.jwplatform.com/videos/${node.id}.mp4`;
   }
 
@@ -216,25 +216,20 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   processAnswer(id: number) {
     this.answerId = id;
     const result = this.node.answers.filter(a => a.id === id)[0];
-    this.selectNextNode(result.goTo);
+    this.selectNextNode(result.play);
   }
 
   processDefault() {
     if (this.node.answers && this.node.answers[0]) {
-      this.selectNextNode(this.node.answers[0].goTo);
+      this.selectNextNode(this.node.answers[0].play);
       return true;
     } else {
       return false;
     }
   }
 
-  selectNextNode(nodeId: string) {
-    const result = this.jsonFileReader.getById(this.scenarioId, nodeId);
-    if (result) {
-      this.nextNode = result;
-    } else {
-      this.nextNode = <Node> {id: nodeId};
-    }
+  selectNextNode(node: Video) {
+    this.nextNode = node;
   }
 
 }

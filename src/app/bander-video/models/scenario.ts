@@ -1,6 +1,8 @@
+import {Video} from './video';
+
 export interface Scenario {
   id: string;
   title: string;
-  data: Node[];
   img: string;
+  play: Video;
 }

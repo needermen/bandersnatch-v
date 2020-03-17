@@ -10,6 +10,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {DeviceDetectorModule} from 'ngx-device-detector';
 import {MobileIsNotSupportedComponent} from './mobile-is-not-supported/mobile-is-not-supported.component';
 import {ConfigModule} from './config/config.module';
+import {ListItemComponent} from './shared/list-item/list-item.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {ConfigModule} from './config/config.module';
     BrowserAnimationsModule,
     FontAwesomeModule,
     ConfigModule,
+    SharedModule,
     DeviceDetectorModule.forRoot()
   ],
   providers: [

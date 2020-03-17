@@ -1,37 +1,9 @@
+
+
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
-
-  > div {
-    margin: 2% 0 0 1%;
-    width: 32%;
-    min-width: 420px;
-
-    img {
-      width: 100%;
-    }
-
-    div.title {
-      margin-top: 10px;
-
-      span {
-        font-size: 25px;
-      }
-    }
-
-    button {
-      margin-top: 10px;
-      width: 100%;
-      font-size: 20px;
-    }
-  }
-}
-
-@media only screen and (max-width: 1280px) {
-  button {
-    display: none;
-  }
 }

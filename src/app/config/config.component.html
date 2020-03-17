@@ -1,1 +1,28 @@
-<p>config works!</p>
+<p-tree [value]="data" layout="horizontal" selectionMode="single">
+  <ng-template let-node pTemplate="video">
+    <div class="node">
+      <p *ngIf="node.data?.answer">
+        <i class="pi pi-arrow-circle-left"></i>
+        პასუხი: {{node.data?.answer}}
+      </p>
+      <br>
+      <video [src]="jwPlayerSource(node)" controls crossorigin="crossorigin">
+        Your browser does not support the video tag.
+      </video>
+      <br>
+      <span *ngIf="node.data?.question">
+        შეკითხვა: {{node.data?.question}}
+        <i class="pi pi-arrow-circle-right"></i>
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template let-node pTemplate="root">
+    <div class="root">
+      <app-list-item [item]="node.data" [showSelect]="false"></app-list-item>
+    </div>
+  </ng-template>
+</p-tree>
+
+<br><br><br><br>
+<span>{{selectedScenario | json}}</span>

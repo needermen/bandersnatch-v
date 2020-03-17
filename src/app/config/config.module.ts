@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ConfigComponent} from './config.component';
 import {TreeModule} from 'primeng';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [ConfigComponent],
@@ -10,7 +11,8 @@ import {TreeModule} from 'primeng';
   ],
   imports: [
     CommonModule,
-    TreeModule
+    TreeModule,
+    SharedModule
   ]
 })
 export class ConfigModule {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 // @ts-ignore
 import scenarios from '../../../data.json';
-import {Node} from '../models/node';
+import {Video} from '../models/video';
 import {Scenario} from '../models/scenario';
 
 @Injectable({
@@ -14,18 +14,10 @@ export class JsonFileReaderService {
     this.scenarios = scenarios as Scenario[];
   }
 
-  getFirst(scenarioId: string): Node {
+  getFirst(scenarioId: string): Video {
     const scenario = this.getScenario(scenarioId);
     if (scenario) {
-      return scenario.data[0] as unknown as Node;
-    }
-  }
-
-  getById(scenarioId: string, id: string): Node {
-    const scenario = this.getScenario(scenarioId);
-    if(scenario) {
-      const nodes = scenario.data as unknown as Node[];
-      return nodes.filter(n => n.id === id)[0];
+      return scenario.play as unknown as Video;
     }
   }
 

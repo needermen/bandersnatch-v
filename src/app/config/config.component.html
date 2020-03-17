@@ -25,4 +25,5 @@
 </p-tree>
 
 <br><br><br><br>
-<span>{{selectedScenario | json}}</span>
+<json-editor [options]="editorOptions" style="min-height: 800px;"  [data]="jsonData" (change)="changeJson($event)"></json-editor>
+

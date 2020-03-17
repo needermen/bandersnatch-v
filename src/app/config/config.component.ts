@@ -3,6 +3,7 @@ import {JsonFileReaderService} from '../bander-video/services/json-file-reader.s
 import {Video} from '../bander-video/models/video';
 import {TreeNode} from 'primeng/api';
 import {Scenario} from '../bander-video/models/scenario';
+import {JsonEditorOptions} from 'ang-jsoneditor';
 
 @Component({
   selector: 'app-config',
@@ -11,24 +12,35 @@ import {Scenario} from '../bander-video/models/scenario';
 })
 export class ConfigComponent implements OnInit {
   data = [];
-  selectedScenario: Scenario;
+  jsonData: Scenario;
+  editorOptions: JsonEditorOptions;
 
   constructor(private jsonFileReaderService: JsonFileReaderService) {
-    this.selectedScenario = this.jsonFileReaderService.getAllScenarios()[0];
+    this.jsonData = this.jsonFileReaderService.getAllScenarios()[0];
+    this.buildTree(this.jsonData);
+  }
+
+  ngOnInit(): void {
+    this.editorOptions = new JsonEditorOptions();
+    this.editorOptions.modes = ['code'];
+    this.editorOptions.mode = 'code';
+  }
+
+  buildTree(scenario: Scenario) {
+    this.data = [];
+
     const root = {
       expanded: true,
       type: 'root',
-      data: this.selectedScenario,
+      data: scenario,
       children: []
     } as TreeNode;
 
-    root.children.push(this.convertWithChildren(this.selectedScenario.play));
+    root.children.push(this.convertWithChildren(scenario.play));
 
     this.data.push(root);
   }
 
-  ngOnInit(): void {
-  }
 
   convertToTreeNode(video: Video) {
     return {
@@ -56,4 +68,9 @@ export class ConfigComponent implements OnInit {
   jwPlayerSource(node: TreeNode) {
     return `https://content.jwplatform.com/videos/${node.data.id}.mp4`;
   }
+
+  changeJson(change) {
+    this.buildTree(change);
+  }
+
 }

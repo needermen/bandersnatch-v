@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {ConfigComponent} from './config.component';
 import {TreeModule} from 'primeng';
 import {SharedModule} from '../shared/shared.module';
+import {NgJsonEditorModule} from 'ang-jsoneditor';
 
 @NgModule({
   declarations: [ConfigComponent],
@@ -12,7 +13,8 @@ import {SharedModule} from '../shared/shared.module';
   imports: [
     CommonModule,
     TreeModule,
-    SharedModule
+    SharedModule,
+    NgJsonEditorModule
   ]
 })
 export class ConfigModule {

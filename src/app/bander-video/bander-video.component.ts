@@ -82,7 +82,7 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     if (node.hls) {
       if (Hls.isSupported()) {
         const hls = new Hls();
-        hls.loadSource(node.hls);
+        hls.loadSource(this.jwPlayerHlsSource(node));
         hls.attachMedia(video);
         if (start) {
           if (start) {
@@ -92,7 +92,7 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
           }
         }
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        this.renderer2.setAttribute(video, 'src', node.hls);
+        this.renderer2.setAttribute(video, 'src', this.jwPlayerHlsSource(node));
         if (start) {
           video.addEventListener('loadedmetadata', () => {
             video.play();
@@ -130,6 +130,10 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
 
   jwPlayerSource(node: Video) {
     return node.url ? node.url : `https://content.jwplatform.com/videos/${node.id}.mp4`;
+  }
+
+  jwPlayerHlsSource(video: Video) {
+    return `https://cdn.jwplayer.com/manifests/${video.id}.m3u8`;
   }
 
   /* Movement Handling */
@@ -200,10 +204,10 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   /* Process Question, Answer */
   questionMode: boolean;
   countDown: number;
-  answerId: number;
+  answerIndex: number;
 
   processQuestion() {
-    this.answerId = 0;
+    this.answerIndex = -1;
     this.questionMode = false;
     if (!this.nextNode && !this.processDefault()) {
       this.currentVideo.addEventListener('ended', () => this.backIt.emit());
@@ -214,8 +218,8 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   }
 
   processAnswer(id: number) {
-    this.answerId = id;
-    const result = this.node.answers.filter(a => a.id === id)[0];
+    this.answerIndex = id;
+    const result = this.node.answers[this.answerIndex];
     this.selectNextNode(result.play);
   }
 

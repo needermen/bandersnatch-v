@@ -5,42 +5,38 @@
     "img": "https://content.jwplatform.com/thumbs/qNLhqk3W-480.jpg",
     "play": {
       "id": "qWD0hCm8",
-      "hls": "https://cdn.jwplayer.com/manifests/qWD0hCm8.m3u8",
+      "hls": true,
       "question": "აბა რა გინდა შემდეგი?",
       "answers": [
         {
-          "id": 1,
           "text": "გააგრძელე",
           "play": {
             "id": "3ibNF4nX",
-            "hls": "https://cdn.jwplayer.com/manifests/3ibNF4nX.m3u8",
+            "hls": true,
             "question": "აბა jocker მოვიდა!",
             "answers": [
               {
-                "id": 1,
-                "text": "გააგრძელე",
+                "text": "jocker",
                 "play": {
                   "id": "qGDzvXdA",
-                  "hls": "https://cdn.jwplayer.com/manifests/qGDzvXdA.m3u8"
+                  "hls": true
                 }
               },
               {
-                "id": 2,
-                "text": "უკან გადაახვიე",
+                "text": "jocker-2",
                 "play": {
                   "id": "qGDzvXdA",
-                  "hls": "https://cdn.jwplayer.com/manifests/qGDzvXdA.m3u8"
+                  "hls": true
                 }
               }
             ]
           }
         },
         {
-          "id": 2,
           "text": "უკან გადაახვიე",
           "play": {
             "id": "MDpB9GpQ",
-            "hls": "https://cdn.jwplayer.com/manifests/MDpB9GpQ.m3u8"
+            "hls": true
           }
         }
       ]
@@ -56,20 +52,18 @@
       "question": "აბა რა გინდა შემდეგი!",
       "answers": [
         {
-          "id": 1,
           "text": "გააგრძელე",
           "play": {
-            "id": "jockerContinued",
-            "hls": "https://cdn.jwplayer.com/manifests/qGDzvXdA.m3u8",
+            "id": "qGDzvXdA",
+            "hls": true,
             "question": "აბა რა გინდა შემდეგი!"
           }
         },
         {
-          "id": 2,
           "text": "უკან გადაახვიე",
           "play": {
-            "id": "jockerReversed",
-            "hls": "https://cdn.jwplayer.com/manifests/d6caosqZ.m3u8",
+            "id": "d6caosqZ",
+            "hls": true,
             "question": "აბა რა გინდა შემდეგი!"
           }
         }
@@ -81,16 +75,15 @@
     "title": "Costa Rika 4k",
     "img": "https://content.jwplatform.com/thumbs/cufNLapa-480.jpg",
     "play": {
-      "id": "costatica-start",
-      "hls": "https://cdn.jwplayer.com/manifests/cufNLapa.m3u8",
+      "id": "cufNLapa",
+      "hls": true,
       "question": "აბა რა გინდა შემდეგი!",
       "answers": [
         {
-          "id": 1,
           "text": "გააგრძელე",
           "play": {
-            "id": "costaRica-2",
-            "hls": "https://cdn.jwplayer.com/manifests/DHohuzMS.m3u8"
+            "id": "DHohuzMS",
+            "hls": true
           }
         }
       ]

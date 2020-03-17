@@ -21,9 +21,9 @@
       <!--      <h1>{{node?.question}}</h1>-->
     </div>
     <div class="answers" *ngIf="node?.answers">
-      <ng-container *ngFor="let answer of node?.answers">
-        <button type="button" (click)="processAnswer(answer.id)"
-                [ngClass]="{'selected': answer.id == answerId}">{{answer.text}}</button>
+      <ng-container *ngFor="let answer of node?.answers; let i = index">
+        <button type="button" (click)="processAnswer(i)"
+                [ngClass]="{'selected': i == answerIndex}">{{answer.text}}</button>
       </ng-container>
       <span class="timer">{{countDown}}</span>
     </div>

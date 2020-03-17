@@ -47,7 +47,7 @@ export class ConfigComponent implements OnInit {
       expanded: !!video.answers,
       type: 'video',
       label: video.id,
-      data: video
+      data: {...video}
     };
   }
 

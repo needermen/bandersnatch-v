@@ -7,7 +7,6 @@ export interface Video {
 }
 
 export interface Answer {
-  id: number;
   text: string;
   play?: Video;
 }

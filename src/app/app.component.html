@@ -1,3 +1,12 @@
-<app-config></app-config>
-<!--<app-list></app-list>-->
+<button type="button" (click)="show='list'">
+  სია
+</button>
+<button type="button" (click)="show='config'">
+  კონფიგურატორი
+</button>
+
+<br>
+<br>
+<app-config *ngIf="show=='config'"></app-config>
+<app-list *ngIf="show=='list'"></app-list>
 

@@ -3,5 +3,5 @@
   <div class="title">
     <span>{{item.title}}</span>
   </div>
-  <button *ngIf="showSelect" type="button" (click)="select.emit(item.id)">ნახვა</button>
+  <button *ngIf="showButton" type="button" (click)="select.emit(item.id)">{{buttonName}}</button>
 </div>

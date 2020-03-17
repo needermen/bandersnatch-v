@@ -1,0 +1,5 @@
+<div class="wrapper">
+  <ng-container *ngFor="let item of scenarios">
+    <app-list-item [item]="item" buttonName="რედაქტირება" (select)="select.emit($event)"></app-list-item>
+  </ng-container>
+</div>

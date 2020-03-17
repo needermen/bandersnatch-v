@@ -1,33 +1,20 @@
 <div class="container">
-  <div>
-    <p-organizationChart [value]="data" selectionMode="single">
-      <ng-template let-node pTemplate="video">
-        <div class="node">
-          <p *ngIf="node.data?.answer">
-            <i class="pi pi-arrow-circle-up"></i>
-            პასუხი: {{node.data?.answer}}
-          </p>
-          <br>
-          <video [src]="jwPlayerSource(node)" controls crossorigin="crossorigin">
-            Your browser does not support the video tag.
-          </video>
-          <br>
-          <span *ngIf="node.data?.question">
-        შეკითხვა: {{node.data?.question}}
-            <i class="pi pi-arrow-circle-down"></i>
-      </span>
-        </div>
-      </ng-template>
+  <ng-container *ngIf="!selected">
+    <div>
+      <app-config-list [scenarios]="scenarios" (select)="select($event)">
+      </app-config-list>
+    </div>
+  </ng-container>
 
-      <ng-template let-node pTemplate="root">
-        <div class="root">
-          <app-list-item [item]="node.data" [showSelect]="false"></app-list-item>
-        </div>
-      </ng-template>
-    </p-organizationChart>
-  </div>
+  <ng-container *ngIf="selected">
+    <div>
+      <button type="button" (click)="unSelect()">უკან</button>
+      <app-config-item [scenario]="selected"></app-config-item>
+    </div>
+  </ng-container>
+
   <div>
-    <json-editor [options]="editorOptions" [data]="jsonData"
-                 (change)="changeJson($event)"></json-editor>
+    <json-editor [options]="editorOptions" [data]="editorData">
+    </json-editor>
   </div>
 </div>

@@ -18,15 +18,25 @@
               {
                 "text": "jocker",
                 "play": {
-                  "id": "qGDzvXdA",
-                  "hls": true
-                }
-              },
-              {
-                "text": "jocker-2",
-                "play": {
-                  "id": "qGDzvXdA",
-                  "hls": true
+                  "id": "97ipIlr4",
+                  "hls": true,
+                  "question": "აბა რა გინდა შემდეგი!",
+                  "answers": [
+                    {
+                      "text": "გააგრძელე",
+                      "play": {
+                        "id": "qGDzvXdA",
+                        "hls": true
+                      }
+                    },
+                    {
+                      "text": "უკან გადაახვიე",
+                      "play": {
+                        "id": "d6caosqZ",
+                        "hls": true
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -47,24 +57,22 @@
     "title": "Jocker Soundtrack",
     "img": "https://content.jwplatform.com/thumbs/97ipIlr4-480.jpg",
     "play": {
-      "id": "Jocker",
-      "url": "assets/start.mp4",
+      "id": "97ipIlr4",
+      "hls": true,
       "question": "აბა რა გინდა შემდეგი!",
       "answers": [
         {
           "text": "გააგრძელე",
           "play": {
             "id": "qGDzvXdA",
-            "hls": true,
-            "question": "აბა რა გინდა შემდეგი!"
+            "hls": true
           }
         },
         {
           "text": "უკან გადაახვიე",
           "play": {
             "id": "d6caosqZ",
-            "hls": true,
-            "question": "აბა რა გინდა შემდეგი!"
+            "hls": true
           }
         }
       ]

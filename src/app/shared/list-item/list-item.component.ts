@@ -14,7 +14,8 @@ export class ListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() showSelect = true;
+  @Input() showButton = true;
+  @Input() buttonName = 'ნახვა';
   @Input() item: Scenario;
 
   @Output() select: EventEmitter<string> = new EventEmitter<string>();

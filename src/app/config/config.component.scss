@@ -11,3 +11,21 @@ i {
 .root {
   max-width: 480px;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+
+  > div:nth-child(1) {
+    width: 70%;
+    height: 100%;
+  }
+
+  > div:nth-child(2) {
+    width: 30%;
+    height: 100%;
+  }
+
+}

@@ -1,5 +1,6 @@
 @import "~jsoneditor/dist/jsoneditor.min.css";
 
 .ace_editor.ace-jsoneditor {
-  min-height: 500px;
+  min-height: 1000px;
+  height: 100%;
 }

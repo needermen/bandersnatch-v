@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {ListComponent} from './components/bander-list/list.component';
 import {BanderVideoComponent} from './components/bander-item/bander-video.component';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {BanderVideoComponent} from './components/bander-item/bander-video.compon
   ],
   imports: [
     SharedModule,
+    DeviceDetectorModule.forRoot(),
     RouterModule.forChild([
       {
         path: '', pathMatch: 'full', component: ListComponent

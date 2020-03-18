@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ListItemComponent} from './list-item/list-item.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {DeviceDetectorModule} from 'ngx-device-detector';
 
 
 @NgModule({
@@ -12,7 +11,6 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
   imports: [
     FontAwesomeModule,
     CommonModule,
-    DeviceDetectorModule.forRoot()
   ],
   exports: [
     FontAwesomeModule,

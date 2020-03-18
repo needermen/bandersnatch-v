@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {JsonFileReaderService} from '../shared/services/json-file-reader.service';
 import {JsonEditorComponent, JsonEditorOptions} from 'ang-jsoneditor';
 import {Scenario} from '../front/models/scenario';
+import {ConfigService} from './services/config.service';
 
 @Component({
   selector: 'app-config',
@@ -18,11 +19,12 @@ export class ConfigComponent implements OnInit {
 
   @ViewChild(JsonEditorComponent) jsonEditor: JsonEditorComponent;
 
-  constructor(private jsonFileReaderService: JsonFileReaderService) {
+  constructor(private jsonFileReaderService: JsonFileReaderService,
+              private configService: ConfigService) {
   }
 
   ngOnInit(): void {
-    this.scenarios = this.jsonFileReaderService.getAllScenarios();
+    this.scenarios = this.configService.getLocalScenarios() || this.jsonFileReaderService.getAllScenarios();
     this.editorData = this.scenarios;
 
     this.editorOptions = new JsonEditorOptions();
@@ -34,6 +36,7 @@ export class ConfigComponent implements OnInit {
       } else {
         Object.assign(this.scenarios, this.jsonEditor.get());
       }
+      this.configService.saveInLocal(this.scenarios);
     };
   }
 

@@ -19,7 +19,8 @@
 
   <ng-template let-node pTemplate="root">
     <div class="root">
-      <app-list-item [item]="node.data" [showButton]="false"></app-list-item>
+      <span>პირველი გვერდი</span>
+      <app-list-item [item]="node.data" [hideButton]="true"></app-list-item>
     </div>
   </ng-template>
 </p-organizationChart>

@@ -1,7 +1,7 @@
 export interface Video {
   id: string;
   url?: string;
-  hls?: string;
+  hls?: boolean;
   question?: string;
   answers?: Answer[];
 }

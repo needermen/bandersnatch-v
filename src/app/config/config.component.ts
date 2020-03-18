@@ -3,6 +3,7 @@ import {JsonFileReaderService} from '../shared/services/json-file-reader.service
 import {JsonEditorComponent, JsonEditorOptions} from 'ang-jsoneditor';
 import {Scenario} from '../front/models/scenario';
 import {ConfigService} from './services/config.service';
+import {Answer} from '../front/models/video';
 
 @Component({
   selector: 'app-config',
@@ -15,7 +16,6 @@ export class ConfigComponent implements OnInit {
 
   editorOptions: JsonEditorOptions;
   editorData: any;
-  selectedEditorData: any;
 
   @ViewChild(JsonEditorComponent) jsonEditor: JsonEditorComponent;
 
@@ -40,14 +40,58 @@ export class ConfigComponent implements OnInit {
     };
   }
 
+  updateScenario() {
+    this.configService.saveInLocal(this.scenarios);
+    this.editorData = this.selected || this.scenarios;
+  }
+
   select(id: string) {
     this.selected = this.scenarios.filter(sc => sc.id === id)[0];
-    this.selectedEditorData = this.selected;
-    this.editorData = this.selected;
+    this.updateScenario();
+  }
+
+  delete(id: string) {
+    if (confirm('ნამდვილად გინდა წაშლა')) {
+      this.scenarios = this.scenarios.filter(it => it.id !== id);
+      this.updateScenario();
+    }
   }
 
   unSelect() {
     this.selected = null;
-    this.editorData = this.scenarios;
+    this.updateScenario();
+  }
+
+  add() {
+    const newScenario = {
+      id: this.generate(5),
+      title: 'new Scenario',
+      img: 'imgURL',
+      play: {
+        id: 'jwPlayer id',
+        url: 'string',
+        hls: true,
+        question: 'კითხვა',
+        answers: [
+          {
+            text: 'პასუხი',
+            play: {}
+          }
+        ]
+      }
+    } as Scenario;
+
+    this.scenarios = [...this.scenarios, newScenario];
+    this.updateScenario();
+  }
+
+  generate(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 }

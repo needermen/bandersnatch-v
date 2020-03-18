@@ -1,7 +1,7 @@
 <div class="container">
   <ng-container *ngIf="!selected">
     <div>
-      <app-config-list [scenarios]="scenarios" (select)="select($event)">
+      <app-config-list [scenarios]="scenarios" (select)="select($event)" (add)="add()" (delete)="delete($event)">
       </app-config-list>
     </div>
   </ng-container>

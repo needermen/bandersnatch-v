@@ -8,9 +8,10 @@ import {ConfigListComponent} from './config-list/config-list.component';
 import {ConfigService} from './services/config.service';
 import {ConfigItemComponent} from './config-item/config-item.component';
 import {RouterModule} from '@angular/router';
+import { ConfigListItemComponent } from './config-list-item/config-list-item.component';
 
 @NgModule({
-  declarations: [ConfigComponent, ConfigListComponent, ConfigItemComponent],
+  declarations: [ConfigComponent, ConfigListComponent, ConfigItemComponent, ConfigListItemComponent],
   imports: [
     OrganizationChartModule,
     NgJsonEditorModule,

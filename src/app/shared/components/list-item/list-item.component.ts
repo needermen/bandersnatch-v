@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Scenario} from '../../front/models/scenario';
+import {Scenario} from '../../../front/models/scenario';
 
 @Component({
   selector: 'app-list-item',
@@ -14,9 +14,7 @@ export class ListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() showButton = true;
-  @Input() buttonName = 'ნახვა';
+  @Input() hideButton = false;
   @Input() item: Scenario;
-
   @Output() select: EventEmitter<string> = new EventEmitter<string>();
 }

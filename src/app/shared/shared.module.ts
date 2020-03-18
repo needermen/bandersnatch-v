@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ListItemComponent} from './list-item/list-item.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ListItemComponent} from './components/list-item/list-item.component';
 
 
 @NgModule({
   declarations: [
-    ListItemComponent,
+    ListItemComponent
   ],
   imports: [
     FontAwesomeModule,

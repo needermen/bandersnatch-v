@@ -1,5 +1,10 @@
 <div class="wrapper">
   <ng-container *ngFor="let item of scenarios">
-    <app-list-item [item]="item" buttonName="რედაქტირება" (select)="select.emit($event)"></app-list-item>
+    <app-config-list-item [item]="item" (edit)="select.emit(item.id)" (delete)="delete.emit(item.id)"></app-config-list-item>
   </ng-container>
+  <div class="adds">
+    <button class="add" (click)="add.emit()">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 <div>
-  <img src="{{item.img}}" alt="">
+  <img src="{{item.img ? item.img : 'assets/not-found.png'}}" alt="not-found">
   <div class="title">
     <span>{{item.title}}</span>
   </div>

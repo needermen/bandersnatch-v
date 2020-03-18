@@ -66,7 +66,7 @@ export class ConfigComponent implements OnInit {
     const newScenario = {
       id: this.generate(5),
       title: 'new Scenario',
-      img: 'imgURL',
+      img: '',
       play: {
         id: 'jwPlayer id',
         url: 'string',

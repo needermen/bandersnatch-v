@@ -1,0 +1,5 @@
+<div class="wrapper">
+  <ng-container *ngFor="let item of list">
+    <app-list-item [item]="item" (select)="select($event)"></app-list-item>
+  </ng-container>
+</div>

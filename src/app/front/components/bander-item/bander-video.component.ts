@@ -1,10 +1,12 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {JsonFileReaderService} from '../shared/services/json-file-reader.service';
-import {Video} from './models/video';
+import {JsonFileReaderService} from '../../../shared/services/json-file-reader.service';
+import {Video} from '../../models/video';
 import {Subject, timer} from 'rxjs';
 import {take} from 'rxjs/operators';
-import {fade} from './animations/fade.animation';
+import {fade} from '../../animations/fade.animation';
 import {faChevronCircleLeft, faCompress, faExpand, faPauseCircle, faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 declare var Hls;
 
@@ -21,22 +23,32 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
   faPause = faPauseCircle;
   faBack = faChevronCircleLeft;
 
+  isDesktop = this.deviceService.isDesktop();
+
   node: Video;
   nextNode: Video;
 
   currentVideo: any;
   newVideo: any;
 
-  @Input() scenarioId: string;
-  @Output() backIt = new EventEmitter();
-  @ViewChild('wrapper', {static: false}) wrapper: ElementRef;
+  scenarioId: string;
+  @ViewChild('wrapper') wrapper: ElementRef;
 
-  constructor(private renderer2: Renderer2, private jsonFileReader: JsonFileReaderService) {
+  constructor(private renderer2: Renderer2,
+              private route: ActivatedRoute,
+              private router: Router,
+              private deviceService: DeviceDetectorService,
+              private jsonFileReader: JsonFileReaderService) {
   }
 
   ngOnInit(): void {
-    this.node = this.jsonFileReader.getFirst(this.scenarioId);
-    this.initMovementHandling();
+    this.route.params.subscribe(params => {
+      if (params.id) {
+        this.scenarioId = params.id;
+        this.node = this.jsonFileReader.getFirst(this.scenarioId);
+        this.initMovementHandling();
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -210,7 +222,7 @@ export class BanderVideoComponent implements OnInit, AfterViewInit {
     this.answerIndex = -1;
     this.questionMode = false;
     if (!this.nextNode && !this.processDefault()) {
-      this.currentVideo.addEventListener('ended', () => this.backIt.emit());
+      this.currentVideo.addEventListener('ended', () => this.router.navigate(['../']));
     } else {
       this.createNewVideo();
       this.currentVideo.addEventListener('ended', this.startNewVideo);

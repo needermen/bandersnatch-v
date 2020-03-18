@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {JsonFileReaderService} from '../../../shared/services/json-file-reader.service';
 import {Scenario} from '../../models/scenario';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -11,17 +12,17 @@ import {DeviceDetectorService} from 'ngx-device-detector';
 export class ListComponent implements OnInit {
   list: Scenario[];
   selectedId: string;
-  isDesktop: boolean;
 
-  constructor(private jsonFileReaderService: JsonFileReaderService, private deviceService: DeviceDetectorService) {
+  constructor(private jsonFileReaderService: JsonFileReaderService, private router: Router, private deviceService: DeviceDetectorService) {
     this.list = this.jsonFileReaderService.getAllScenarios();
-    this.isDesktop = this.deviceService.isDesktop();
+
   }
 
   ngOnInit() {
   }
 
   select(id: string) {
+    this.router.navigate(['bander', id]);
     this.selectedId = id;
   }
 }

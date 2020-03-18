@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
-import {ListComponent} from './components/list/list.component';
-import {BanderVideoComponent} from './bander-video.component';
 import {MobileIsNotSupportedComponent} from './components/mobile-is-not-supported/mobile-is-not-supported.component';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
+import {ListComponent} from './components/bander-list/list.component';
+import {BanderVideoComponent} from './components/bander-item/bander-video.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,9 @@ import {SharedModule} from '../shared/shared.module';
     RouterModule.forChild([
       {
         path: '', pathMatch: 'full', component: ListComponent
+      },
+      {
+        path: ':id', component: BanderVideoComponent
       }
     ])
   ]

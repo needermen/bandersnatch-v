@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Scenario} from '../../bander-video/models/scenario';
 import {JsonEditorOptions} from 'ang-jsoneditor';
 import {JsonFileReaderService} from '../../shared/services/json-file-reader.service';
 import {TreeNode} from 'primeng/api';
-import {Video} from '../../bander-video/models/video';
+import {Scenario} from '../../front/models/scenario';
+import {Video} from '../../front/models/video';
 
 @Component({
   selector: 'app-config-item',

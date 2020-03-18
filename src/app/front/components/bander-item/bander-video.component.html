@@ -1,0 +1,38 @@
+<ng-container *ngIf="isDesktop; else onlyDesktop">
+  <div class="wrapper" #wrapper (mousemove)="onmouseMove()">
+    <video id="vi" crossorigin="crossorigin">
+      Your browser does not support the video tag.
+    </video>
+    <ng-container *ngIf="!questionMode && showPlayerControls">
+    <span [@fade]>
+      <fa-icon class="back" [routerLink]="['../']" [icon]="faBack">
+      </fa-icon>
+      <fa-icon *ngIf="!paused" class="pause" (click)="pause()" [icon]="faPause">
+      </fa-icon>
+      <fa-icon *ngIf="paused" class="play" (click)="play()" [icon]="faPlay">
+      </fa-icon>
+      <fa-icon *ngIf="!fullScreened" class="expand" (click)="fullscreen()" [icon]="faExpand">
+      </fa-icon>
+      <fa-icon *ngIf="fullScreened" class="compress" (click)="fullscreen()" [icon]="faCompress">
+      </fa-icon>
+    </span>
+    </ng-container>
+    <div class="question-answer" *ngIf="questionMode">
+      <div class="question" *ngIf="node?.question">
+        <!--      <h1>{{node?.question}}</h1>-->
+      </div>
+      <div class="answers" *ngIf="node?.answers">
+        <ng-container *ngFor="let answer of node?.answers; let i = index">
+          <button type="button" (click)="processAnswer(i)"
+                  [ngClass]="{'selected': i == answerIndex}">{{answer.text}}</button>
+        </ng-container>
+        <span class="timer">{{countDown}}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #onlyDesktop>
+  <app-mobile-is-not-supported></app-mobile-is-not-supported>
+</ng-template>
+

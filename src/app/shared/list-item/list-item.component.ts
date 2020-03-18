@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {Scenario} from '../../bander-video/models/scenario';
+import {Scenario} from '../../front/models/scenario';
 
 @Component({
   selector: 'app-list-item',

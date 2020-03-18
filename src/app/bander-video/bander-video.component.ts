@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {JsonFileReaderService} from './services/json-file-reader.service';
+import {JsonFileReaderService} from '../shared/services/json-file-reader.service';
 import {Video} from './models/video';
 import {Subject, timer} from 'rxjs';
 import {take} from 'rxjs/operators';

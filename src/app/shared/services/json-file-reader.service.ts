@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 // @ts-ignore
 import scenarios from '../../../data.json';
-import {Video} from '../models/video';
-import {Scenario} from '../models/scenario';
+import {Video} from '../../bander-video/models/video';
+import {Scenario} from '../../bander-video/models/scenario';
 
 @Injectable({
   providedIn: 'root'

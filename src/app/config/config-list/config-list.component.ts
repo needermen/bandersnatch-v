@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Scenario} from '../../bander-video/models/scenario';
-import {JsonFileReaderService} from '../../bander-video/services/json-file-reader.service';
+import {JsonFileReaderService} from '../../shared/services/json-file-reader.service';
 
 @Component({
   selector: 'app-config-list',

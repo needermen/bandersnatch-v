@@ -1,32 +1,39 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ListComponent} from './list/list.component';
-import {BanderVideoComponent} from './bander-video/bander-video.component';
-import {JsonFileReaderService} from './bander-video/services/json-file-reader.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {JsonFileReaderService} from './shared/services/json-file-reader.service';
 import {DeviceDetectorModule} from 'ngx-device-detector';
-import {MobileIsNotSupportedComponent} from './mobile-is-not-supported/mobile-is-not-supported.component';
 import {ConfigModule} from './config/config.module';
-import {ListItemComponent} from './shared/list-item/list-item.component';
 import {SharedModule} from './shared/shared.module';
+import {FrontModule} from './bander-video/front.module';
+import {RouterModule} from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
-    BanderVideoComponent,
-    MobileIsNotSupportedComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FontAwesomeModule,
-    ConfigModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'bander'
+      },
+      {
+        path: 'bander',
+        loadChildren: () => import('./bander-video/front.module').then(m => m.FrontModule)
+      },
+      {
+        path: 'admin-config',
+        loadChildren: () => import('./config/config.module').then(m => m.ConfigModule)
+      }
+
+    ]),
     SharedModule,
-    DeviceDetectorModule.forRoot()
   ],
   providers: [
     JsonFileReaderService

@@ -1,12 +1,11 @@
-<button type="button" (click)="show='list'">
+<button type="button" [routerLinkActive]="'selected'" [routerLink]="['bander']">
   სია
 </button>
-<button type="button" (click)="show='config'">
+<button type="button" [routerLinkActive]="'selected'" [routerLink]="['admin-config']">
   კონფიგურატორი
 </button>
 
 <br>
 <br>
-<app-config *ngIf="show=='config'"></app-config>
-<app-list *ngIf="show=='list'"></app-list>
 
+<router-outlet></router-outlet>

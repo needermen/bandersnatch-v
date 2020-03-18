@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {JsonFileReaderService} from '../bander-video/services/json-file-reader.service';
-import {Scenario} from '../bander-video/models/scenario';
+import {JsonFileReaderService} from '../../../shared/services/json-file-reader.service';
+import {Scenario} from '../../models/scenario';
 import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({

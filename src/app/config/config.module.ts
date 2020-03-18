@@ -4,20 +4,22 @@ import {ConfigComponent} from './config.component';
 import {SharedModule} from '../shared/shared.module';
 import {NgJsonEditorModule} from 'ang-jsoneditor';
 import {OrganizationChartModule} from 'primeng/organizationchart';
-import { ConfigListComponent } from './config-list/config-list.component';
+import {ConfigListComponent} from './config-list/config-list.component';
 import {ConfigService} from './services/config.service';
-import { ConfigItemComponent } from './config-item/config-item.component';
+import {ConfigItemComponent} from './config-item/config-item.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [ConfigComponent, ConfigListComponent, ConfigItemComponent],
-  exports: [
-    ConfigComponent
-  ],
   imports: [
-    CommonModule,
     OrganizationChartModule,
+    NgJsonEditorModule,
     SharedModule,
-    NgJsonEditorModule
+    RouterModule.forChild([
+      {
+        path: '', pathMatch: 'full', component: ConfigComponent
+      }
+    ])
   ],
   providers: [
     ConfigService

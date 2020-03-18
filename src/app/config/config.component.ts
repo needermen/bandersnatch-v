@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Scenario} from '../bander-video/models/scenario';
-import {JsonFileReaderService} from '../bander-video/services/json-file-reader.service';
+import {JsonFileReaderService} from '../shared/services/json-file-reader.service';
 import {JsonEditorComponent, JsonEditorOptions} from 'ang-jsoneditor';
 
 @Component({

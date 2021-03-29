@@ -1,0 +1,20 @@
+<div class="container">
+  <ng-container *ngIf="!selected">
+    <div>
+      <app-config-list [scenarios]="scenarios" (select)="select($event)" (add)="add()" (delete)="delete($event)">
+      </app-config-list>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="selected">
+    <div>
+      <button type="button" (click)="unSelect()">უკან</button>
+      <app-config-item [scenario]="selected"></app-config-item>
+    </div>
+  </ng-container>
+
+  <div>
+    <json-editor [options]="editorOptions" [data]="editorData">
+    </json-editor>
+  </div>
+</div>

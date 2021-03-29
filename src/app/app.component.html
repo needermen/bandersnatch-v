@@ -1,1 +1,11 @@
-<app-list></app-list>
+<button type="button" [routerLinkActive]="'selected'" [routerLink]="['bander']">
+  ფრონტი
+</button>
+<button type="button" [routerLinkActive]="'selected'" [routerLink]="['admin-config']">
+  კონფიგურატორი
+</button>
+
+<br>
+<br>
+
+<router-outlet></router-outlet>

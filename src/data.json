@@ -3,100 +3,98 @@
     "id": "scen1",
     "title": "Chemical Brothers",
     "img": "https://content.jwplatform.com/thumbs/qNLhqk3W-480.jpg",
-    "data": [
-      {
-        "id": "chemical-start",
-        "hls": "https://cdn.jwplayer.com/manifests/qWD0hCm8.m3u8",
-        "question": "აბა რა გინდა შემდეგი!",
-        "answers": [
-          {
-            "id": 1,
-            "text": "გააგრძელე",
-            "goTo": "chemical-continue"
-          },
-          {
-            "id": 2,
-            "text": "უკან გადაახვიე",
-            "goTo": "chemical-reversed"
+    "play": {
+      "id": "qWD0hCm8",
+      "hls": true,
+      "question": "აბა რა გინდა შემდეგი?",
+      "answers": [
+        {
+          "text": "გააგრძელე",
+          "play": {
+            "id": "3ibNF4nX",
+            "hls": true,
+            "question": "აბა jocker მოვიდა!",
+            "answers": [
+              {
+                "text": "jocker",
+                "play": {
+                  "id": "97ipIlr4",
+                  "hls": true,
+                  "question": "აბა რა გინდა შემდეგი!",
+                  "answers": [
+                    {
+                      "text": "გააგრძელე",
+                      "play": {
+                        "id": "qGDzvXdA",
+                        "hls": true
+                      }
+                    },
+                    {
+                      "text": "უკან გადაახვიე",
+                      "play": {
+                        "id": "d6caosqZ",
+                        "hls": true
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
           }
-        ]
-      },
-      {
-        "id": "chemical-continue",
-        "hls": "https://cdn.jwplayer.com/manifests/3ibNF4nX.m3u8"
-      },
-      {
-        "id": "chemical-reversed",
-        "hls": "https://cdn.jwplayer.com/manifests/MDpB9GpQ.m3u8"
-      }
-    ]
+        },
+        {
+          "text": "უკან გადაახვიე",
+          "play": {
+            "id": "MDpB9GpQ",
+            "hls": true
+          }
+        }
+      ]
+    }
   },
   {
     "id": "scen2",
     "title": "Jocker Soundtrack",
     "img": "https://content.jwplatform.com/thumbs/97ipIlr4-480.jpg",
-    "data": [
-      {
-        "id": "Jocker",
-        "url": "assets/start.mp4",
-        "question": "აბა რა გინდა შემდეგი!",
-        "answers": [
-          {
-            "id": 1,
-            "text": "გააგრძელე",
-            "goTo": "jockerContinued"
-          },
-          {
-            "id": 2,
-            "text": "უკან გადაახვიე",
-            "goTo": "jockerReversed"
+    "play": {
+      "id": "97ipIlr4",
+      "hls": true,
+      "question": "აბა რა გინდა შემდეგი!",
+      "answers": [
+        {
+          "text": "გააგრძელე",
+          "play": {
+            "id": "qGDzvXdA",
+            "hls": true
           }
-        ]
-      },
-      {
-        "id": "jockerContinued",
-        "hls": "https://cdn.jwplayer.com/manifests/qGDzvXdA.m3u8",
-        "question": "აბა რა გინდა შემდეგი!"
-      },
-      {
-        "id": "jockerReversed",
-        "hls": "https://cdn.jwplayer.com/manifests/d6caosqZ.m3u8",
-        "question": "აბა რა გინდა შემდეგი!"
-      }
-    ]
+        },
+        {
+          "text": "უკან გადაახვიე",
+          "play": {
+            "id": "d6caosqZ",
+            "hls": true
+          }
+        }
+      ]
+    }
   },
   {
     "id": "scen3",
     "title": "Costa Rika 4k",
     "img": "https://content.jwplatform.com/thumbs/cufNLapa-480.jpg",
-    "data": [
-      {
-        "id": "costatica-start",
-        "hls": "https://cdn.jwplayer.com/manifests/cufNLapa.m3u8",
-        "question": "აბა რა გინდა შემდეგი!",
-        "answers": [
-          {
-            "id": 1,
-            "text": "გააგრძელე",
-            "goTo": "costaRica-2"
+    "play": {
+      "id": "cufNLapa",
+      "hls": true,
+      "question": "აბა რა გინდა შემდეგი!",
+      "answers": [
+        {
+          "text": "გააგრძელე",
+          "play": {
+            "id": "DHohuzMS",
+            "hls": true
           }
-        ]
-      },
-      {
-        "id": "costaRica-2",
-        "hls": "https://cdn.jwplayer.com/manifests/DHohuzMS.m3u8"
-      }
-    ]
-  },
-  {
-    "id": "scen4",
-    "title": "Iceland",
-    "img": "https://content.jwplatform.com/thumbs/77bikmdy-480.jpg",
-    "data": [
-      {
-        "id": "iceland",
-        "hls": "https://cdn.jwplayer.com/manifests/77bikmdy.m3u8"
-      }
-    ]
+        }
+      ]
+    }
   }
 ]

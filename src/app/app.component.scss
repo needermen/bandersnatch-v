@@ -1,0 +1,9 @@
+button {
+  font-size: 20px;
+  width: 200px;
+  margin-top: 20px;
+
+  &.selected {
+    background: #7ca04c;
+  }
+}

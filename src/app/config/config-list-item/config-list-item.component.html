@@ -1,0 +1,10 @@
+<div>
+  <img src="{{item.img ? item.img : 'assets/not-found.png'}}" alt="not-found">
+  <div class="title">
+    <span>{{item.title}}</span>
+  </div>
+  <div class="buttons">
+    <button type="button" (click)="edit.emit()">რედაქტირება</button>
+    <button type="button" (click)="delete.emit()">წაშლა</button>
+  </div>
+</div>

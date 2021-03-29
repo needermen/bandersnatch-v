@@ -1,0 +1,35 @@
+div {
+  margin: 5% 2% 0 0;
+  width: 30%;
+  min-width: 420px;
+
+  img {
+    width: 100%;
+    min-height: 300px;
+  }
+
+  div.title {
+    margin-top: 10px;
+
+    span {
+      font-size: 25px;
+    }
+  }
+
+  div.buttons {
+    margin: 0;
+
+    button {
+      margin-top: 10px;
+      font-size: 20px;
+
+      &:nth-child(1) {
+        width: 70%;
+      }
+
+      &:nth-child(2) {
+        width: 30%;
+      }
+    }
+  }
+}
